@@ -1,7 +1,7 @@
 <!-- ini adalah langkah pertama setelah memotong template index.php yaitu membuat form_profile.php -->
 <!-- ditengah2 halaman ini selanjutnya dibuat action_insert_profile.php dari action="action_insert_profile.php" method="post" -->
 <!-- next kita ke file="action_insert_profile.php" method="post" -->
-<!-- lanjutkan utk membuat file berikutnya yaitu form_job.php,language.php, form_portofolio.php, form_education.php, form_reference.php dg cara berulang yg sama -->
+<!-- lanjutkan utk membuat file berikutnya yaitu form_training.php,language.php, form_portofolio.php, form_education.php, form_reference.php dg cara berulang yg sama -->
 
 <?php include "header.php" ?>
 
@@ -36,7 +36,8 @@
                     </div>
 
                     <!-- content start -->
-                    <form action="action_insert_profile.php" method="post">
+                    <form action="action_insert_profile.php" method="post"
+                    enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nama" class="form-label"> Nama
                             </label>
@@ -51,7 +52,7 @@
                             <label for="website" class="form-label">
                             Website </label>
                             <input type="text" class="form-control"id="website"
-                            name="website">
+                        name="website">
 
                         </div>
                         <div class="mb-3">
