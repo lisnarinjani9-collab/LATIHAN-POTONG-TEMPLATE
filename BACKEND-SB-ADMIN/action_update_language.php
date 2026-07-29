@@ -1,44 +1,61 @@
+<!-- from file update_form_language.php -->
+
 <?php
 include "connection.php";
 
-// $vnama utk penyimpanan sedangkan $_POST menerima inputan name="nama" dr form_language,php
-$id_language = $_POST['language'];
-$vlanguage=$_POST['bahasa'];
-$flagimage=time() . ".jpg";
+// $vnama untuk penyimpanan sedangkan $_POST menerima inputan name="nama" dr
+// update_form_language.php
+$id_language = $_POST['id_language'];
+$vlanguage = $_POST['bahasa'];
+$vlevel = $_POST['level'];
+$flagimage = time() . ".jpg";
 
-// utk pnyimpanan file foto yg nanti tambahkn file form_language
+// utk menyimpan file foto yg nanti kita tambahkan dari form_language
 $path = "fotobende/";
 
-//mysqli adlh perintah utk menytukan koneksi dataabase dg query tabel
+// update tanpa foto. Yg mau di update adlh keterangan saja selain foto.
+if (empty($_FILES['flag']['name'])) {
 
-if (empty($_FILES ['flag']['name'])) {
-    $sql_update_language_no_image = mysqli_query($koneksi, "UPDATE language SET
-    bahasa='$vlanguage WHERE id_language='$id_language'");
-    header("Location:tabel_language.php");
+    $sql_update_language_no_image = mysqli_query(
+        $koneksi,
+        "UPDATE language SET
+        bahasa='$vlanguage',
+        level='$vlevel' WHERE id_language='$id_language'");
+        header("Location:tabel_language.php");
 } else {
-    // update mnggunakan foto
 
-    // upload foto baru yg dimasukn dr file_update_form_language.php
+    // update menggunakan foto
+
+    // upload foto baru yg dimasukkan dari update_form_portfolio.php
     move_uploaded_file($_FILES['flag']['tmp_name'], $path . $flagimage);
 
     // hapus foto lama start
-    $fotobendera = mysqli_query($koneksi, "SELECT * FROM language WHERE
-    id_language IN ('$id_language')");
+    $fotobendera = mysqli_query(
+        $koneksi,
+        "SELECT * FROM language WHERE 
+        id_language IN ('$id_language')");
 
     // tampilkan foto
     $vflag = mysqli_fetch_object($fotobendera);
-    $vpath = "fotobende/";
+    $path = "fotobende/";
 
-    // is_file gunany untuk mengecek terlbh dahulu file di folder foto sblm dihps 
-    // unlink gunanya untuk menghapus fotonya
+    // is_file gunanya utk mengecek terlebih dahulu file di folder foto sblm dihapus
+    // unlink gunanya utk menghapus fotonya
     if (is_file($path . $vflag->flag)) {
-        unlink($path . $vflag->flag);
-    }
+    unlink($path . $vflag->flag);
+}
 
-    // update dg menggunakan foto dg menambahkan img='$namimage'
-    $sql_update_language_image = mysqli_query($koneksi,"UPDATE language SET
-    bahasa='$vlanguage', flag='$flagimage' WHERE id_language='$id_language'");
+// hapus foto lama end
+
+// update dgn menggunakan foto dgn menambahkan img='$namimage'
+    $sql_update_language_image = mysqli_query(
+    $koneksi,
+    "UPDATE language SET
+    bahasa='$vlanguage',
+    level='$vlevel',
+    flag='$flagimage'
+    WHERE id_language='$id_language'");
 
     header("Location:tabel_language.php");
-}
+    }
 ?>

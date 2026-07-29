@@ -9,7 +9,7 @@
         <!-- Sidebar -->
         <?php include "sidebar.php" ?>
         <!-- End of Sidebar -->
-        
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -32,27 +32,26 @@
 
                     <!-- content start -->
                     <form action="action_insert_familiar.php" method="post">
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">
-                            nama
-                        </label>
-                        <input type="text" class="form-control"
-                        id="nama" name="nama">
-                    </div>
-                    <div class="mb-3">
-                        <label for="icon" class="form-label">
-                            icon</label>
-                        <input type="text" class="form-control"
-                        id="nama" name="icon">
-                    </div>
-                
-                    <button type="submit" class="btn 
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">
+                                nama
+                            </label>
+                            <input type="text" class="form-control" id="nama" name="nama">
+                        </div>
+                        <div class="mb-3">
+                            <label for="icon" class="form-label">
+                                icon</label>
+                            <input type="text" class="form-control" id="nama" name="icon">
+                        </div>
+
+                        <button type="submit" class="btn 
                     btb-primary"> Submit</button>
-                </form>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </form>
                     <!-- content end -->
 
                     <!--/.container-fluid -->
-                    
+
                 </div>
                 <!-- /.container-fluid -->
 

@@ -1,11 +1,21 @@
 <?php
+
 include "connection.php";
 
-$select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_language DESC");
+// Query mengambil data dari tabel language
+$select_language = mysqli_query(
+    $koneksi,
+    "SELECT * FROM language ORDER BY id_language DESC"
+);
+
+// Cek apakah query berhasil
+if (!$select_language) {
+    die("Query Error: " . mysqli_error($koneksi));
+}
 
 ?>
 
-<?php include "header.php" ?>
+<?php include "header.php"; ?>
 
 <body id="page-top">
 
@@ -13,9 +23,9 @@ $select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_lang
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include "sidebar.php" ?>
+        <?php include "sidebar.php"; ?>
         <!-- End of Sidebar -->
-        
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -23,7 +33,7 @@ $select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_lang
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include "topbar.php" ?>
+                <?php include "topbar.php"; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -32,48 +42,68 @@ $select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_lang
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Language</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
-                    <a href="form_language.php" class="btn btn-info mb-2">Add</a>
-                    <!-- content start -->
-                    <table class="table table-striped"> 
+
+                    <!-- Tombol Tambah -->
+                    <a href="form_language.php" class="btn btn-info mb-3">
+                        Add
+                    </a>
+
+                    <!-- Tabel -->
+                    <table class="table table-striped table-bordered">
+
                         <thead>
                             <tr>
-                                <th scope="col">Language</th>
-                                <th scope="col">Flag</th>
-                                <th scope="col">Action</th>
-
+                                <th>No</th>
+                                <th>Language</th>
+                                <th>Level</th>
+                                <th>Flag</th>
+                                <th width="180">Action</th>
                             </tr>
                         </thead>
+
                         <tbody>
+
                             <?php
-                while ($tampil = mysqli_fetch_object($select_language)):
-                        ?>
-                    <tr>
-                                <th scope="row"><?php echo
-                                $tampil->bahasa; ?></th>
-                                <td>
-                            <img src="fotobende/<?php echo $tampil->flag; ?>" alt="Flag" width="100">
-                        </td>
+                            $no = 1;
+                            while ($tampil = mysqli_fetch_object($select_language)) :
+                            ?>
 
-                        <td>
-                                <a href="delete_language.php?id_language=<?php
-                                echo $tampil->id_language;?>" class="btn
-                                btn-danger" onclick="return confirm
-                                ('confirm to delete?')">DELETE</a>
-                                <a href="update_form_language.php?id_language=<?php
-                                echo $tampil->id_language;?>" class="btn
-                                btn-success">UPDATE</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+
+                                    <td><?php echo $tampil->bahasa; ?></td>
+
+                                    <td><?php echo $tampil->level; ?></td>
+
+                                    <td>
+                                        <img src="fotobende/<?php echo $tampil->flag; ?>"
+                                             width="100"
+                                             alt="Flag">
+                                    </td>
+
+                                    <td>
+
+                                        <a href="update_form_language.php?id_language=<?php echo $tampil->id_language; ?>"
+                                           class="btn btn-success btn-sm">
+                                            UPDATE
+                                        </a>
+
+                                        <a href="delete_language.php?id_language=<?php echo $tampil->id_language; ?>"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                            DELETE
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+                            <?php endwhile; ?>
+
                         </tbody>
-                    </table>
-                    <!-- content end -->
 
-                    <!--/.container-fluid -->
-                    
+                    </table>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -81,7 +111,7 @@ $select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_lang
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php include "footer.php" ?>
+            <?php include "footer.php"; ?>
             <!-- End of Footer -->
 
         </div>
@@ -90,5 +120,8 @@ $select_language = mysqli_query($koneksi, "SELECT*FROM language ORDER BY id_lang
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <?php include "bottom.php" ?>
+    <!-- Bottom -->
+    <?php include "bottom.php"; ?>
+
+</body>
+</html>

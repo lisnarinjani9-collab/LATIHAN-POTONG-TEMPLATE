@@ -2,7 +2,7 @@
 <?php
 include "connection.php";
 
-$select_mobile = mysqli_query($koneksi, "SELECT*FROM mobile");
+$select_mobile = mysqli_query($koneksi, "SELECT*FROM mobile ORDER BY id_mobile DESC");
 
 ?>
 

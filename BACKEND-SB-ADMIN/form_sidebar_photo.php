@@ -42,6 +42,7 @@ $select_language = mysqli_query($koneksi, "SELECT * FROM language ORDER BY id_la
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
                     </form>
                     <!-- Content End -->
 
