@@ -1,6 +1,6 @@
 <?php
 include "connection.php";
-$select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar");
+$select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_familiar DESC");
 ?>
 
 <?php include "header.php" ?>
@@ -35,7 +35,7 @@ $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar");
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
                     
-                    <a href="form_familiar.php" class="btn btn-info-mb-2">Add</a>
+                    <a href ="form_familiar.php" class="btn btn-info mb-2">Add</a>
                     <!-- content start -->
                     <table class="table table-striped">
                         <thead>
@@ -53,8 +53,7 @@ $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar");
 
 
 
-                    while ($tampil = mysqli_fetch_object
-                    ($select_familiar)) :
+                    while ($tampil = mysqli_fetch_object ($select_familiar)) :
                     ?>
                         <tr>
                             <th scope="row"><?php echo

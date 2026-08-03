@@ -36,7 +36,7 @@ $select_education = mysqli_query($koneksi, "SELECT*FROM education ORDER BY id_ed
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 <!-- keempat, tambahkan tombol Tambah utk mengerahkan ke file form_profile.php -->
- <a href ="form_education.php" class="btn btn-info mb-2">ADD</a>
+ <a href ="form_education.php" class="btn btn-info mb-2">Add</a>
                     <!-- content start -->
 
              <table class="table table-striped">

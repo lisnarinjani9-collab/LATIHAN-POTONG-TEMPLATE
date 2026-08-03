@@ -28,7 +28,7 @@ $select_language = mysqli_query($koneksi, "SELECT * FROM language ORDER BY id_la
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">SIDEBAR PHOTO</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Sidebar Photo</h1>
                     </div>
 
                     <!-- Content Start -->
